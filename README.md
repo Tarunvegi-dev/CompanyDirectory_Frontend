@@ -1,16 +1,48 @@
-# React + Vite
+# 🏢 Companies Directory (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React application for filtering and viewing company data with **Infinite Scroll**.
 
-Currently, two official plugins are available:
+## ✨ Overview & Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project demonstrates proficiency in modern frontend development by centralizing state management and integrating a third-party UI library.
 
-## React Compiler
+| Category | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Framework** | **React (v18)** | Core UI library. |
+| **Build Tool** | **Vite** | Fast development and bundling (managed by **Bun**). |
+| **UI/Styling** | **Chakra UI** | Responsive layout (`Grid`, `Card`) and accessible components (Bonus). |
+| **State** | **`useState`**, **`useMemo`** | Centralized local state and optimized filtering/slicing logic. |
+| **Bonus** | **`react-intersection-observer`** | Implements the **Infinite Scroll** for large datasets. |
+| **API** | **`data.json`** | Static file mocking the API response (30 MNC records). |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+***
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Tarunvegi-dev/CompanyDirectory_Frontend/
+    cd CompanyDirectory_Frontend
+    ```
+
+2.  **Install dependencies (using Bun):**
+    ```bash
+    bun install
+    ```
+
+3.  **Run the application:**
+    ```bash
+    bun run dev
+    ```
+
+The application will be accessible at `http://localhost:5173`.
+
+***
+
+## 💡 Key Implementation Decisions
+
+| Decision | Implementation | Rationale |
+| :--- | :--- | :--- |
+| **State Management** | **Local Component State** (`DirectoryContainer.jsx`) | Faster and cleaner than using Context/Redux, as the app is a single-view, single-page application. |
+| **Filtering Logic** | **`useMemo`** hook | Optimizes performance by ensuring the expensive filter and data **slicing** logic only runs when the input dependencies (`filters` or `companies`) change. |
+| **Infinite Scroll** | **`useInView` Hook** | Uses the Intersection Observer API to efficiently detect when the sentinel element at the end of the list enters the viewport, triggering the next batch load (`currentPage + 1`). |
